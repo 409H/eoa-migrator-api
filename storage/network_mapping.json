@@ -1,0 +1,16 @@
+[{
+    "id": 1,
+    "name": "mainnet"
+}, {
+    "id": 4,
+    "name": "rinkeby"
+}, {
+    "id": 42,
+    "name": "kovan"
+}, {
+    "id": 56,
+    "name": "binance_smart_chain"
+}, {
+    "id": 137,
+    "name": "polygon"
+}]
