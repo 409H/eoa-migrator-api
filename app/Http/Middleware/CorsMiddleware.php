@@ -9,7 +9,7 @@ class CorsMiddleware
     {
         $headers = [
             'Access-Control-Allow-Origin'      => '*',
-            'Access-Control-Allow-Methods'     => 'GET',
+            'Access-Control-Allow-Methods'     => 'GET,OPTIONS',
             'Access-Control-Allow-Credentials' => 'true',
             'Access-Control-Max-Age'           => '86400',
             'Access-Control-Allow-Headers'     => 'Content-Type, Authorization, X-Requested-With'
