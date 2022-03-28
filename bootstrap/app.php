@@ -74,11 +74,9 @@ $app->configure('app');
 
 $app->middleware([
     App\Http\Middleware\CorsMiddleware::class,
-    App\Http\Middleware\ValidNftQueryParamsMiddleware::class
 ]);
 
 $app->routeMiddleware([
-    "cors" => App\Http\Middleware\CorsMiddleware::class,
     "validNftQueryParams" => App\Http\Middleware\ValidNftQueryParamsMiddleware::class
 ]);
 

@@ -14,16 +14,16 @@ use App\Utils\NetworkMapping;
 |
 */
 
-$router->get('/', function () use ($router) {
+$router->get('/', ['middleware' => [], function () use ($router) {
     return response()->json(
         [
             'response' => 'OK'
         ], 
         200
     );
-});
+}]);
 
-$router->get('/wallet/nfts/', ['middleware' => ['cors', 'validNftQueryParams'], function(Request $request) use ($router) {
+$router->get('/wallet/nfts/', ['middleware' => ['validNftQueryParams'], function(Request $request) use ($router) {
 
     // Map the network ID to the network name
     $objNetwork = new NetworkMapping();
