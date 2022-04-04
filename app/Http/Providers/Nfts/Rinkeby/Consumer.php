@@ -1,5 +1,6 @@
 <?php
 namespace App\Http\Providers\Nfts\Rinkeby;
+
 use \GuzzleHttp\Client;
 use App\Http\Providers\Nfts\BaseProvider;
 use App\Http\Providers\Nfts\ProviderInterface;

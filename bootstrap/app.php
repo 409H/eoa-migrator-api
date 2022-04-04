@@ -77,7 +77,8 @@ $app->middleware([
 ]);
 
 $app->routeMiddleware([
-    "validNftQueryParams" => App\Http\Middleware\ValidNftQueryParamsMiddleware::class
+    "validNftQueryParams" => App\Http\Middleware\ValidNftQueryParamsMiddleware::class,
+    "validTransactionsQueryParams" => App\Http\Middleware\ValidTransactionsQueryParamsMiddleware::class
 ]);
 
 /*

@@ -34,3 +34,38 @@ The output for these files should be:
 ```
 
 Note: All NFT endpoint hits are validated through `CorsMiddleware.php` and `ValidNftQueryParamsMiddleware.php`.
+
+
+## Responses
+
+### Errors
+
+```json
+HTTP 400
+
+{
+    "response": "ERROR",
+    "code": "ERR_CODE",
+    "message": "Some reason for the error"
+}
+```
+
+* `ERR_ADDRESS_INVALID` - The address passed in the request query string is not the correct format (`/^0x[a-fA-F0-9]{40}$/`)
+* `ERR_NETWORK_ID_INVALID` - The network ID passed in the request query string is not the correct format (`/^\d+$/`)
+* `ERR_OFFSET_INVALID` - The offset amount passed in the request query string is not the correct format (`/^\d+$/`)
+* `ERR_LIMIT_INVALID` - The limit amount passed in the request query string is not the correct format (`/^\d+$/`)
+* `ERR_NO_DATA_PROVIDER` - No data provider for the endpoint (ie: BSC does not have an NFT data provider)
+
+
+### Successful
+
+```json
+HTTP 200
+
+{
+    "response": "OK",
+    "data": {
+        //
+    }
+}
+```

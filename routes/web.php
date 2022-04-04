@@ -23,38 +23,32 @@ $router->get('/', ['middleware' => [], function () use ($router) {
     );
 }]);
 
-$router->get('/wallet/nfts/', ['middleware' => ['validNftQueryParams'], function(Request $request) use ($router) {
+/**
+ * Returns a list of networks that the API supports for fetching NFT data
+ */
+$router->get('/wallet/nfts/networks', [
+    'uses' => 'NftController@getSupportedNetworks'
+]);
 
-    // Map the network ID to the network name
-    $objNetwork = new NetworkMapping();
-    $networkName = $objNetwork->getNameFromId($request->get('network'));
-    $formattedNetworkName = $objNetwork->formatNetworkName($networkName);
+/**
+ * Return a list of NFTs for a specific wallet
+ */
+$router->get('/wallet/nfts/', [
+    'middleware' => ['validNftQueryParams'],
+    'uses' => 'NftController@getAccountNfts'
+]);
 
-    $class = 'App\\Http\\Providers\\Nfts\\'. $formattedNetworkName .'\Consumer';
-    if(class_exists($class) === false) {
-        return response()->json(
-            [
-                'response' => 'ERROR',
-                'code' => "ERR_NO_DATA_PROVIDER",
-                'message' => "We currently do not have an NFT data provider for this network."
-            ], 
-            400
-        );
-    }
+/**
+ * Return a list of recent transactions for a specific wallet
+ */
+$router->get('/wallet/transactions', [
+    'middleware' => ['validTransactionsQueryParams'],
+    'uses' => 'TransactionController@getTransactions'
+]);
 
-    $objNftProvider = new $class();
-    $nftData = $objNftProvider->getDataFromApi(
-        $request->get('address'),
-        $request->get('offset'),
-        $request->get('limit'),
-    )->getResponse();
-
-
-    return response()->json(
-        [
-            'response' => 'OK',
-            'data' => $nftData
-        ], 
-        200
-    );
-}]);
+/**
+ * Returns a list of networks that the API supports for fetching transaction data
+ */
+$router->get('/wallet/transactions/networks', [
+    'uses' => 'TransactionController@getSupportedNetworks'
+]);

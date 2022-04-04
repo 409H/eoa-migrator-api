@@ -11,6 +11,11 @@ class NetworkMapping {
         return in_array($id, $mappedIds);
     }
 
+    public function getAll(): array {
+        $mapping = config('network_mapping');
+        return $mapping;
+    }
+
     public function getNameFromId(int $id): string {
         if(!$this->isSupportedNetworkId($id)) {
             throw new \Exception("Unsupported network id: {$id}");
