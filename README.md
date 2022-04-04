@@ -2,7 +2,7 @@
 
 This is the API to proxy HTTP requests from the client side to a third party with the goal of keeping API keys secret - and in the future to enable data caching, more endpoints, and more microservices to make the experience better.
 
-[![Deploy to Heroku](https://www.herokucdn.com/deploy/button.svg)](hhttps://dashboard.heroku.com/new?template=https%3A%2F%2Fgithub.com%2F409h%2Feoa-migrator-api)
+[![Deploy to Heroku](https://www.herokucdn.com/deploy/button.svg)](https://dashboard.heroku.com/new?template=https%3A%2F%2Fgithub.com%2F409h%2Feoa-migrator-api)
 
 ## Add a network
 
