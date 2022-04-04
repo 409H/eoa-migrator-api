@@ -36,7 +36,7 @@ class Consumer extends BaseProvider implements ProviderInterface
         try {
             $res = $client->request(
                 'GET', 
-                "?module=account&action=txlist&address=". $this->userAddress ."&startblock=0&endblock=99999999&page=1&offset=0&sort=asc&apikey=". env("PROVIDER_TX_POLYGONSCAN_API_KEY", "NO_API_KEY")
+                "?module=account&action=txlist&address=". $this->userAddress ."&startblock=0&endblock=99999999&page=1&offset=0&sort=asc&apikey=". env("PROVIDER_TX_POLYGON_API_KEY", "NO_API_KEY")
             );
         } catch(GuzzleHttp\Exception\ClientException $e) {
             // Something went wrong with the request to the third-party

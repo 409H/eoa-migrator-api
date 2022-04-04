@@ -2,11 +2,34 @@
 
 This is the API to proxy HTTP requests from the client side to a third party with the goal of keeping API keys secret - and in the future to enable data caching, more endpoints, and more microservices to make the experience better.
 
+[![Deploy to Heroku](https://www.herokucdn.com/deploy/button.svg)](hhttps://dashboard.heroku.com/new?template=https%3A%2F%2Fgithub.com%2F409h%2Feoa-migrator-api)
+
 ## Add a network
 
 You can add a network to the mapping table stored in `storage/network_mapping.json`. The `app/Providers/AppServiceProvider.php` will read this file on boot and store it within the Laravel helper `config()`.
 
 ## NFTs
+
+**Route:** `GET /wallet/nfts/networks`
+
+This will give a list of networks that is supported with this proxy API to return some NFT data for an account
+
+The output for this route is:
+
+```
+{
+    "response": "OK",
+    "data": [
+        {
+            "id": 4,
+            "name": "rinkeby"
+        },
+        {
+            // ...
+        }
+    ]
+}
+```
 
 **Route:** `GET /wallet/nfts/?address=<address>&network=<network_id>`
 
@@ -14,7 +37,7 @@ To add a provider for NFT data, add `Consumer.php` to one of the network directo
 
 The output for these files should be:
 
-```json
+```
 {
     address: "<string>",
     totalAssets: "<null | int>"
@@ -40,7 +63,7 @@ Note: All NFT endpoint hits are validated through `CorsMiddleware.php` and `Vali
 
 ### Errors
 
-```json
+```
 HTTP 400
 
 {
@@ -59,7 +82,7 @@ HTTP 400
 
 ### Successful
 
-```json
+```
 HTTP 200
 
 {

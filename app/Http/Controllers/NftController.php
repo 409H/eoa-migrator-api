@@ -46,7 +46,20 @@ class NftController extends Controller
     {
         // Map the network ID to the network name
         $objNetwork = new NetworkMapping();
-        $networkName = $objNetwork->getNameFromId($request->get('network'));
+
+        try {
+            $networkName = $objNetwork->getNameFromId($request->get('network'));
+        } catch(\Exception $e) {
+                return response()->json(
+                    [
+                        'response' => 'ERROR',
+                        'code' => "ERR_UNSUPPORTED_NETWORK",
+                        'message' => "We currently do not support this network."
+                    ], 
+                    400
+                );
+        }
+        
         $formattedNetworkName = $objNetwork->formatNetworkName($networkName);
 
         $class = 'App\\Http\\Providers\\Nfts\\'. $formattedNetworkName .'\Consumer';
