@@ -52,3 +52,18 @@ $router->get('/wallet/transactions', [
 $router->get('/wallet/transactions/networks', [
     'uses' => 'TransactionController@getSupportedNetworks'
 ]);
+
+/**
+ * Return estimates of gas prices for a specific network
+ */
+$router->get('/gas', [
+    'middleware' => ['validGasQueryParams'],
+    'uses' => 'GasController@getGasEstimates'
+]);
+
+/**
+ * Returns a list of networks that the API supports for fetching gas data
+ */
+$router->get('/gas/networks', [
+    'uses' => 'GasController@getSupportedNetworks'
+]);

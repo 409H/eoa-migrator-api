@@ -36,6 +36,7 @@ The output for this route is:
 This will give a list of any NFTs and the asset traits for a particular address on a particular network.
 
 The output for this route is:
+
 ```
 {
     "response": "OK",
@@ -119,6 +120,7 @@ The output for this route is:
 This will give a list of transactions for a particular address on a particular network.
 
 The output for this route is:
+
 ```
 {
     "response": "OK",
@@ -151,6 +153,51 @@ The output for this route is:
     }
 }
 ```
+
+## Gas
+
+### **Route:** `GET /gas/networks`
+
+This will give a list of networks that is supported with this proxy API to return some gas data for a network
+
+The output for this route is:
+
+```
+{
+    "response": "OK",
+    "data": [
+        {
+            "id": 4,
+            "name": "rinkeby"
+        },
+        {
+            // ...
+        }
+    ]
+}
+```
+
+
+### **Route:** `GET /gas?network=<network_id>`
+
+This will give the current gas estimates for a particular network
+
+The output for this route is:
+
+```
+{
+    "response": "OK",
+    "data": {
+        "provider": "Etherscan",
+        "gas": {
+			"safe": "71",
+			"fast": "71",
+			"base_fee": "70.220708583"
+        }
+    }
+}
+```
+
 
 ## Response Structures
 
