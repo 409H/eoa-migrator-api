@@ -76,7 +76,7 @@ class Consumer extends BaseProvider implements ProviderInterface
             "transactions" => []
         ];
 
-        if(count($rawResponse["result"])) {
+        if(is_countable($rawResponse["result"]) && count($rawResponse["result"])) {
             $output["totalTx"] = count($rawResponse["result"]);
             $output["transactions"] = $rawResponse["result"];
         }
