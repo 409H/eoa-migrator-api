@@ -75,11 +75,22 @@ class NftController extends Controller
         }
 
         $objNftProvider = new $class();
-        $nftData = $objNftProvider->getDataFromApi(
-            $request->get('address'),
-            $request->get('offset'),
-            $request->get('limit'),
-        )->getResponse();
+        try {
+            $nftData = $objNftProvider->getDataFromApi(
+                $request->get('address'),
+                $request->get('offset'),
+                $request->get('limit'),
+            )->getResponse();
+        } catch (\Exception $e) {
+            return response()->json(
+                [
+                    'response' => 'ERROR',
+                    'code' => "ERR_THIRD_PARTY",
+                    'message' => "An error was thrown by the provider - {$e->getMessage()}"
+                ], 
+                400
+            );
+        }
 
 
         return response()->json(

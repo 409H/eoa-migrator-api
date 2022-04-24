@@ -41,11 +41,15 @@ class Consumer extends BaseProvider implements ProviderInterface
             );
         } catch(GuzzleHttp\Exception\ClientException $e) {
             // Something went wrong with the request to the third-party
+            throw new \Exception("Invalid response from third-party. ClientException! {$e->getMessage()}");
+        } catch(\Exception $e) {
+            // Something went wrong with the request to the third-party
+            throw new \Exception("Invalid response from third-party. Exception! {$e->getMessage()}");
         }
 
         // If we don't get a HTTP 200 from the API
         if($res->getStatusCode() !== 200) {
-            throw new Exception("Invalid response from third-party. Expected HTTP 200, got HTTP {$res->getStatusCode()}");
+            throw new \Exception("Invalid response from third-party. Expected HTTP 200, got HTTP {$res->getStatusCode()}");
         }
 
         return $this->formatResponse(json_decode($res->getBody()->getContents(), true));
